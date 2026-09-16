@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giulia Villa — Human-Centred AI, DTU</title>
+<meta name="description" content="MSc student in Human-Centred Artificial Intelligence at DTU, Copenhagen. Machine learning, computer vision and explainable AI.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#F7F7F5;
+  --surface:#EDECE7;
+  --ink:#1A1C20;
+  --muted:#5C6169;
+  --faint:#8A8F97;
+  --rule:#DBD9D3;
+  --accent:#3A2E8F;
+  --accent-soft:#E5E2F4;
+
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --display:"Fraunces",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --rail:216px;
+  --gutter:clamp(1.5rem,5vw,5rem);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- navigation rail ---------- */
+.rail{
+  position:fixed; inset:0 auto 0 0;
+  width:var(--rail);
+  padding:2.5rem 1.75rem;
+  display:flex; flex-direction:column; justify-content:space-between;
+  border-right:1px solid var(--rule);
+  background:var(--paper);
+  z-index:20;
+}
+.rail__name{
+  font-family:var(--display);
+  font-size:1.35rem; font-weight:600; line-height:1.15;
+  text-decoration:none; letter-spacing:-.01em;
+}
+.rail__role{
+  margin-top:.45rem;
+  font-size:.78rem; color:var(--muted); line-height:1.45;
+}
+.rail__nav{list-style:none;margin:2.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.15rem}
+.rail__nav a{
+  display:block; padding:.3rem 0;
+  font-size:.9rem; color:var(--muted); text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .15s;
+}
+.rail__nav a:hover{color:var(--ink)}
+.rail__nav a.is-current{color:var(--accent);font-weight:500}
+.rail__foot{font-size:.78rem;color:var(--faint);line-height:1.5}
+.rail__foot a{color:var(--muted)}
+
+.topbar{display:none}
+
+/* ---------- page shell ---------- */
+.page{margin-left:var(--rail);padding:0 var(--gutter)}
+.wrap{max-width:960px}
+.prose{max-width:64ch}
+
+section{padding:clamp(4rem,9vh,7rem) 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+
+h2{
+  font-family:var(--display);
+  font-weight:400; font-size:clamp(1.7rem,3.2vw,2.35rem);
+  line-height:1.15; letter-spacing:-.015em;
+  margin:0 0 2rem;
+}
+h3{font-size:1.05rem;font-weight:600;margin:0 0 .2rem}
+p{margin:0 0 1.1rem}
+.lead{font-size:1.1rem;color:var(--muted)}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100vh;
+  display:grid; grid-template-columns:1.15fr .85fr;
+  gap:clamp(2rem,5vw,4.5rem); align-items:center;
+  padding:5rem 0 3rem;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:300; font-size:clamp(3.2rem,7vw,5.6rem);
+  line-height:.95; letter-spacing:-.03em;
+  margin:0 0 1.5rem;
+}
+.hero h1 em{font-style:normal;display:block}
+.hero__sub{
+  font-size:1.22rem; line-height:1.45; color:var(--ink);
+  max-width:26ch; margin:0 0 1.6rem;
+}
+.hero__body{max-width:48ch;color:var(--muted);margin-bottom:2rem}
+
+.status{
+  display:inline-flex; align-items:center; gap:.6rem;
+  padding:.4rem .85rem .4rem .7rem;
+  border:1px solid var(--rule); border-radius:999px;
+  background:#fff;
+  font-size:.85rem; color:var(--muted);
+  margin-bottom:1.8rem;
+}
+.status i{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);flex:none;
+}
+
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.btn{
+  display:inline-block; padding:.72rem 1.35rem;
+  background:var(--accent); color:#fff;
+  text-decoration:none; font-size:.92rem; font-weight:500;
+  border-radius:2px; border:1px solid var(--accent);
+  transition:background .15s;
+}
+.btn:hover{background:#2A2170}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* diffusion portrait */
+.portrait{position:relative}
+.portrait__frame{
+  position:relative; width:100%; aspect-ratio:4/5;
+  background:var(--surface); overflow:hidden;
+}
+.portrait canvas{width:100%;height:100%;display:block}
+.portrait__cap{
+  margin-top:.85rem; font-size:.8rem; color:var(--faint);
+  line-height:1.5; max-width:34ch;
+}
+.portrait__replay{
+  background:none;border:0;padding:0;
+  font:inherit;font-size:.8rem;color:var(--accent);
+  text-decoration:underline;text-underline-offset:2px;cursor:pointer;
+}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.about p{max-width:none}
+.facts{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.facts li{
+  display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;
+  padding:.7rem 0;border-bottom:1px solid var(--rule);
+  font-size:.92rem;
+}
+.facts span{color:var(--faint)}
+
+/* ---------- entries (experience / education) ---------- */
+.entry{
+  display:grid;grid-template-columns:11rem 1fr;gap:1.5rem;
+  padding:1.5rem 0;border-top:1px solid var(--rule);
+}
+.entry:first-of-type{border-top:0;padding-top:0}
+.entry__when{
+  font-family:var(--mono); font-size:.82rem; color:var(--faint);
+  padding-top:.25rem; line-height:1.5;
+}
+.entry__where{color:var(--muted);font-size:.92rem;margin:0 0 .6rem}
+.entry p:last-child{margin-bottom:0}
+.entry ul{margin:.4rem 0 0;padding-left:1.1rem;color:var(--muted)}
+.entry li{margin-bottom:.3rem}
+.tag{
+  display:inline-block;margin:.5rem .35rem 0 0;padding:.15rem .55rem;
+  background:var(--accent-soft);color:var(--accent);
+  font-size:.78rem;border-radius:2px;
+}
+
+/* ---------- projects ---------- */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
+.proj{display:flex;flex-direction:column}
+.proj__media{
+  aspect-ratio:16/10;background:var(--surface);
+  position:relative;overflow:hidden;margin-bottom:.9rem;
+}
+.proj__media img{width:100%;height:100%;object-fit:cover}
+.proj__media.is-empty{
+  background:
+    repeating-linear-gradient(135deg,transparent 0 9px,rgba(58,46,143,.05) 9px 10px),
+    var(--surface);
+  display:flex;align-items:center;justify-content:center;
+}
+.proj__media.is-empty::after{
+  content:attr(data-label);
+  font-family:var(--mono);font-size:.75rem;color:var(--faint);
+  padding:0 1rem;text-align:center;
+}
+.proj__caption{font-family:var(--mono);font-size:.72rem;color:var(--faint);margin:-.55rem 0 .75rem;line-height:1.4}
+.proj h3{margin-bottom:.35rem}
+.proj__stack{font-family:var(--mono);font-size:.78rem;color:var(--accent);margin:0 0 .5rem}
+.proj p{font-size:.92rem;color:var(--muted);margin:0 0 .7rem}
+.proj p:last-of-type{margin-bottom:0}
+.proj__meta{font-size:.85rem !important;color:var(--faint) !important;font-style:italic}
+.proj__link{
+  margin-top:.6rem;font-size:.85rem;color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--rule);
+}
+.proj__link:hover{text-decoration-color:var(--accent)}
+.proj--wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(1.5rem,3vw,2.5rem);row-gap:0;align-items:start}
+.proj--wide .proj__media{grid-row:1/span 40;margin-bottom:0;align-self:start}
+.proj--wide > *:not(.proj__media){grid-column:2}
+.proj--wide .proj__caption{margin-top:.2rem}
+@media (max-width:640px){.proj--wide{grid-template-columns:1fr}.proj--wide .proj__media{grid-row:auto;margin-bottom:.9rem}}
+
+
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(2rem,5vw,4rem)}
+.skillrow{padding:1rem 0;border-top:1px solid var(--rule)}
+.skillrow h3{font-size:.85rem;color:var(--faint);font-weight:500;margin-bottom:.4rem}
+.skillrow p{margin:0;font-size:.95rem}
+.langs{display:grid;gap:.55rem;margin:0;padding:0;list-style:none}
+.langs li{display:flex;justify-content:space-between;gap:1rem;font-size:.95rem;padding-bottom:.5rem;border-bottom:1px solid var(--rule)}
+.langs span{color:var(--muted);font-family:var(--mono);font-size:.82rem}
+
+/* ---------- contact ---------- */
+.contact{padding-bottom:6rem}
+.contact h2{margin-bottom:1rem}
+.contact__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.contact__list{list-style:none;margin:1.5rem 0 0;padding:0}
+.contact__list li{padding:.7rem 0;border-top:1px solid var(--rule);font-size:.98rem}
+.contact__list a{text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:1px}
+.contact__list a:hover{border-color:var(--accent);color:var(--accent)}
+
+.colophon{
+  margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--rule);
+  font-size:.8rem;color:var(--faint);
+}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .rail{
+    position:sticky;inset:0 auto auto 0;width:auto;
+    flex-direction:row;align-items:center;justify-content:space-between;
+    gap:1rem;padding:.9rem var(--gutter);
+    border-right:0;border-bottom:1px solid var(--rule);
+  }
+  .rail__role,.rail__foot{display:none}
+  .rail__nav{flex-direction:row;margin:0;gap:1.1rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .rail__nav a{white-space:nowrap;font-size:.85rem}
+  .rail__name{font-size:1.05rem}
+  .page{margin-left:0}
+  .hero{grid-template-columns:1fr;min-height:0;padding:3rem 0 1rem;gap:2.5rem}
+  .about,.contact__grid{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .projects{grid-template-columns:1fr}
+  .entry{grid-template-columns:1fr;gap:.4rem}
+  .entry__when{padding-top:0}
+  .facts li{grid-template-columns:1fr;gap:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="rail">
+  <div>
+    <a class="rail__name" href="#top">Giulia<br>Villa</a>
+    <p class="rail__role">MSc student in Human-Centred AI, Technical University of Denmark</p>
+    <ul class="rail__nav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <p class="rail__foot">
+    Kgs. Lyngby, Denmark<br>
+    <a href="tel:+4531891148">+45 31 89 11 48</a><br>
+    <a href="mailto:giulyyvilla@gmail.com">giulyyvilla@gmail.com</a><br>
+    <a href="https://github.com/giuliavillaa" target="_blank" rel="noopener">github.com/giuliavillaa</a>
+  </p>
+</nav>
+
+<main class="page" id="top">
+  <div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <p class="status"><i></i>Available 15–20 h/week · can start immediately</p>
+
+      <h1>Giulia Villa</h1>
+
+      <p class="hero__sub">Fascinated by AI and by how far it can reshape the fields we live in.</p>
+
+      <p class="hero__body">
+        MSc student in Human-Centred Artificial Intelligence at the Technical University of Denmark,
+        specialising in Machine Learning at Scale. Background in machine learning, computer vision
+        and generative models, with a bachelor thesis on deterministic diffusion models for image restoration.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="Giulia_Villa_CV.pdf">Download CV</a>
+        <a class="btn btn--ghost" href="#projects">See the work</a>
+        <a class="btn btn--ghost" href="https://github.com/giuliavillaa" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <figure class="portrait" style="margin:0">
+      <div class="portrait__frame">
+        <canvas id="diffusion" width="720" height="900" aria-label="Portrait of Giulia Villa"></canvas>
+      </div>
+      <figcaption class="portrait__cap">
+        <button class="portrait__replay" id="replay" type="button">Run it again</button>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about">
+      <div class="prose">
+        <p>
+          I moved to Denmark in 2026 to study Human-Centred AI at DTU, after a bachelor's in
+          Artificial Intelligence run jointly by three Italian universities and a first year of
+          master's coursework in Trento. DTU recognised those courses as credit towards my degree here.
+        </p>
+        <p>
+          What draws me is the seam between a model and the person on the other side of it.
+          My bachelor covered that side directly — cognitive psychology, human-system interaction,
+          AI and society, ethics and law — alongside the technical core.
+        </p>
+        <p>
+          I'm slowly learning Danish, and I intend to build my career here.
+        </p>
+      </div>
+      <ul class="facts">
+        <li><span>Based in</span>Kgs. Lyngby, Denmark</li>
+        <li><span>Studying</span>MSc Human-Centred AI, DTU</li>
+        <li><span>Specialising in</span>Machine Learning at Scale</li>
+        <li><span>Graduating</span>June 2028</li>
+        <li><span>Status</span>EU citizen — no work permit required · CPR registration in progress</li>
+        <li><span>Looking for</span>Part-time student assistant role, Copenhagen area</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="entry">
+      <div class="entry__when">Sep 2026 –<br>Jun 2028</div>
+      <div>
+        <h3>MSc, Human-Centred Artificial Intelligence</h3>
+        <p class="entry__where">Technical University of Denmark (DTU) — Kgs. Lyngby</p>
+        <p>Specialising in Machine Learning at Scale. This semester: UX Design &amp; Prototyping in Figma, Deep Learning, Machine Learning, Applied AI for Entrepreneurs, Quantitative Methods for Sustainability.</p>
+        <span class="tag">Human–AI interaction</span><span class="tag">Responsible AI</span><span class="tag">Machine learning</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry__when">Dec 2025 –<br>Aug 2026</div>
+      <div>
+        <h3>MSc coursework, Artificial Intelligence and Systems</h3>
+        <p class="entry__where">University of Trento — Italy</p>
+        <p>First year of master's coursework, completed before transferring to DTU. Computer Vision; Signal, Image and Video Processing; Law and Ethics in AI — all recognised as credit by DTU.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry__when">Oct 2022 –<br>Dec 2025</div>
+      <div>
+        <h3>BSc, Artificial Intelligence — 106/110</h3>
+        <p class="entry__where">Joint programme: University of Pavia, University of Milano-Bicocca, University of Milan</p>
+        <p>A technical core — machine learning and deep learning, NLP and text mining, data mining, statistical modelling, algorithms — paired with the human side of AI: cognitive psychology, human-system interaction, AI and society, ethics and law. Hands-on labs in machine learning, medical devices and behavioural measures.</p>
+        <p>Thesis: <em>Deterministic Diffusion Models for Image Restoration — From Probabilistic Generation to Cold Diffusion.</em> Supervisor: Prof. Claudio Cusano.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry__when">2024 &ndash; 2026<br>Milan, Italy</div>
+      <div>
+        <h3>Private tutor &mdash; Python, C++</h3>
+        <p class="entry__where">Self-employed</p>
+        <ul>
+          <li>Tutored high-school and university students in programming, mostly people starting from zero. Two years of explaining technical things to people who don't find them obvious.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry__when">2025 &ndash; 2026<br>Milan, Italy</div>
+      <div>
+        <h3>Event host</h3>
+        <p class="entry__where">Savoir Events; Rial Events</p>
+        <ul>
+          <li>Worked at corporate and private events: welcoming guests, registration desk, general on-site help.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry__when">2025 &ndash; 2026<br>Bergamo, Italy</div>
+      <div>
+        <h3>Social media and content support</h3>
+        <p class="entry__where">Punto Scarpe</p>
+        <ul>
+          <li>Made posts and visuals for a small local business and looked after its Instagram.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry__when">Sep &ndash; Nov 2025<br>Ranica, Italy</div>
+      <div>
+        <h3>Library volunteer</h3>
+        <p class="entry__where">Ranica Public Library</p>
+        <ul>
+          <li>Helped visitors and kept the collection in order.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <article class="proj" data-repo="cold-diffusion">
+        <div class="proj__media is-empty" data-label="cold-diffusion.jpg">
+          <img src="cold-diffusion.jpg" alt="Original, desaturated input, classical baseline and Cold Diffusion output">
+        </div>
+        <p class="proj__caption">Original · desaturated input · classical baseline · Cold Diffusion output</p>
+        <h3>Cold diffusion for image restoration</h3>
+        <p class="proj__stack">PyTorch · U-Net · diffusion models</p>
+        <p>Bachelor thesis. Reimplementation of the Cold Diffusion framework (Bansal et al., 2022) from the paper, testing whether deterministic degradation can be inverted without stochastic noise.</p>
+        <p>Two forward operators on CelebA-HQ at 128×128: colour desaturation (T=50) and Gaussian blur (T=6, σ 0.4–2.0). A U-Net predicts the clean image from any degraded state, trained on an L1 objective; reconstruction uses the residual-correction update.</p>
+        <p>Desaturation: PSNR 38.01, SSIM 0.986. Deblurring: PSNR 28.67, SSIM 0.894, LPIPS 0.173, FID 64.02 — above both a Wiener-like filter and an OpenCV sharpening baseline on all metrics. The gap between the two operators quantifies how reconstruction quality depends on operator invertibility.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/cold-diffusion-restoration" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+      <article class="proj" data-repo="betwise">
+        <div class="proj__media is-empty" data-label="shap-risk.jpg">
+          <img src="shap-risk.jpg" alt="SHAP beeswarm plot and fairness audit boxplots">
+        </div>
+        <p class="proj__caption">SHAP beeswarm across the four risk classes · fairness audit by age and gender</p>
+        <h3>BetWise — gambling-risk classification</h3>
+        <p class="proj__stack">Python · XGBoost · SHAP · scikit-learn · imbalanced-learn</p>
+        <p>Prototype medical device software classifying self-reported online-gambling behaviour into four risk levels, following the behavioural clusters of Braverman &amp; Shaffer (2012).</p>
+        <p>Model selection by nested cross-validation over 60 configurations of sampler, dimensionality reduction and classifier. Ensemble methods overfitted; the retained configuration is XGBoost without oversampling or dimensionality reduction, F1 ≈ 0.93.</p>
+        <p>SHAP used for per-prediction explanation and for a fairness audit across age and gender groups. The audit identified higher feature-importance magnitude for older users and wider SHAP variance for male predictions, documented in the technical file together with the mitigations. Classified as MDR Class IIa software with GDPR-compliant data handling and human-in-the-loop review.</p>
+        <p class="proj__meta">Team project with Chiara Bosi and Leonardo Castelli. My contribution: model code, technical documentation, class presentation.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/betwise-gambling-risk" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+      <article class="proj" data-repo="pose-recognition">
+        <div class="proj__media is-empty" data-label="pose-recognition.jpg">
+          <img src="pose-recognition.jpg" alt="Confusion matrix and temporal structure of the dataset">
+        </div>
+        <p class="proj__caption">Confusion matrix · the same data plotted in recording order</p>
+        <h3>Human activity recognition with neural networks</h3>
+        <p class="proj__stack">Python · TensorFlow/Keras · scikit-learn · LIME</p>
+        <p>Seven-class classification of upper-body movements (left/right bicep, tricep and shoulder engagement, plus rest) from 2,700 frames of 132 pose landmarks — 33 keypoints × (x, y, z, visibility).</p>
+        <p>MLP with dense and dropout layers, tuned by nested cross-validation over 48 configurations, with the scaler fitted inside each outer fold. LIME used to inspect which landmarks individual predictions rely on.</p>
+        <p>Nested CV returns 100% accuracy. Inspection of the data shows each class is a single contiguous recording of roughly 386 frames, with consecutive frames ~31× closer in feature space than random pairs, so a shuffled split places near-duplicates on both sides of the train/test boundary. A temporal split gives 99.3%, still optimistic: with one session per class the dataset cannot estimate generalisation to a new subject.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/pose-activity-recognition" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+      <article class="proj" data-repo="survival">
+        <div class="proj__media is-empty" data-label="survival-ml.jpg">
+          <img src="survival-ml.jpg" alt="Model performance against a majority-class baseline, and per-class metrics">
+        </div>
+        <p class="proj__caption">Model against a majority-class baseline · precision, recall and F1 per class</p>
+        <h3>Breast cancer survival classification</h3>
+        <p class="proj__stack">Python · scikit-learn · SVC · SMOTE · imbalanced-learn</p>
+        <p>Binary survival-status classification on 4,024 SEER breast cancer records. <code>ColumnTransformer</code> with separate imputation for numerical, nominal and ordinal features; SMOTE for the 5.5:1 class imbalance; nested cross-validation over 112 configurations of dimensionality reduction, classifier and sampler.</p>
+        <p>The dataset includes <em>Survival Months</em>, which is post-diagnosis outcome data rather than a predictor available when a prediction would be made. Excluding it and re-running the search gives macro F1 0.63 and, on the 123 deceased patients in the test set, precision 0.43 and recall 0.30 — 37 of 123 deaths identified.</p>
+        <p>Against a baseline that always predicts the majority class, F1 is 0.9029 versus 0.9173. The clinical variables in this dataset — stage, tumour size, node counts, receptor status, age — do not separate the classes in this formulation; the apparent performance came from the excluded feature. Reported as a negative result rather than a headline metric.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/breast-cancer-survival" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+      <article class="proj" data-repo="planisuss">
+        <div class="proj__media is-empty" data-label="planisuss.jpg">
+          <img src="planisuss.jpg" alt="Population curves and herbivores plotted against vegetation density">
+        </div>
+        <p class="proj__caption">336 simulated days · herbivores against vegetation density</p>
+        <h3>Planisuss — agent-based ecosystem simulation</h3>
+        <p class="proj__stack">Python · object-oriented design · NumPy · Matplotlib · Tkinter</p>
+        <p>Agent-based simulation of roughly 4,400 lines across 11 modules: a grid of land and water cells, regrowing vegetation, herbivores forming herds and predators forming prides. Each animal holds its own energy, lifespan, social attitude and inherited traits, and evaluates each day whether to move, feed, join a group or remain. Groups decide collectively by averaging member preferences.</p>
+        <p>Built on inheritance (<code>Animal</code> → <code>Erbast</code>, <code>Carviz</code>) with full type hints, save/load, history logging, and a configuration window for world parameters.</p>
+        <p>Population cycles emerge without being encoded: grazing depletes vegetation, the herbivore population falls, vegetation recovers. Running the simulation across five random seeds also shows that the predator population collapses within the first weeks under the default parameters and does not recover in any run.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/planisuss-simulation" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+      <article class="proj" data-repo="churn">
+        <div class="proj__media is-empty" data-label="churn.jpg">
+          <img src="churn.jpg" alt="ROC curve and feature importance ranking">
+        </div>
+        <p class="proj__caption">ROC on the held-out set · feature importance ranking</p>
+        <h3>Customer churn prediction</h3>
+        <p class="proj__stack">Python · XGBoost · pandas · seaborn · scikit-learn</p>
+        <p>Churn classification on 5,630 e-commerce customer records. Exploratory analysis of missingness patterns, univariate and bivariate distributions against the target, and a correlation matrix; six features dropped as uninformative, median and mode imputation for the rest, one-hot encoding for the remaining categoricals.</p>
+        <p>XGBoost tuned by grid search over 32 configurations with 3-fold cross-validation on ROC AUC. Final model: 200 estimators, depth 5, learning rate 0.1, subsample 0.8.</p>
+        <p>ROC AUC 0.991, accuracy 0.965, recall 0.853, precision 0.936 on the held-out set. Feature importance ranks tenure first, followed by whether the customer had filed a complaint — consistent with the bivariate analysis, where both separate the classes clearly.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/ecommerce-churn-prediction" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+      <article class="proj proj--wide" data-repo="wilson-cowan">
+        <div class="proj__media is-empty" data-label="brain-modelling.jpg">
+          <img src="brain-modelling.jpg" alt="Phase plane with nullclines and the corresponding time course">
+        </div>
+        <p class="proj__caption">Phase plane with nullclines and trajectories · the same system over time</p>
+        <h3>Wilson–Cowan mean-field analysis</h3>
+        <p class="proj__stack">Python · NumPy · SciPy · Matplotlib · ipywidgets</p>
+        <p>Dynamical analysis of neural population activity using the Wilson–Cowan model: two coupled differential equations for the mean firing rate of an excitatory and an inhibitory population.</p>
+        <p>Nullclines computed by inverting the activation function, fixed points located numerically, stability read from the maximum real eigenvalue of the Jacobian. Parameter sweeps over synaptic weights, external input current, the inhibitory time constant and activation thresholds, rendered as stability heatmaps. Interactive sliders redraw the phase plane as parameters change.</p>
+        <p>At certain parameter values the trajectory converges to a limit cycle rather than a fixed point. The same framework is used to model seizure onset, where a small parameter shift crosses a bifurcation into a hyperexcitable regime.</p>
+        <p class="proj__meta">Team project with Federica Latorre, Francesca Mustica and Alessandro Tesi.</p>
+        <a class="proj__link" href="https://github.com/giuliavillaa/wilson-cowan-dynamics" target="_blank" rel="noopener">Read the code</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div>
+        <div class="skillrow">
+          <h3>Programming</h3>
+          <p>Python (advanced), C++, SQL, R, MATLAB, HTML</p>
+        </div>
+        <div class="skillrow">
+          <h3>Machine learning</h3>
+          <p>PyTorch, TensorFlow, Keras, scikit-learn, XGBoost — supervised and unsupervised learning, computer vision, generative and diffusion models, explainable AI (SHAP), multimodal learning, statistical modelling</p>
+        </div>
+        <div class="skillrow">
+          <h3>Analytics and BI</h3>
+          <p>SQL and SQL Server Management Studio, Power BI (DAX, Power Query), relational data modelling, Excel — building dashboards and reports that people outside the team can read</p>
+        </div>
+        <div class="skillrow">
+          <h3>Data and tools</h3>
+          <p>Pandas, NumPy, OpenCV, Matplotlib, Jupyter, Git and GitHub, LaTeX</p>
+        </div>
+        <div class="skillrow">
+          <h3>Design and communication</h3>
+          <p>Figma, Microsoft Office, written and visual content</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="skillrow">
+          <h3>Languages</h3>
+          <ul class="langs">
+            <li>Italian <span>Native</span></li>
+            <li>English <span>C1 — IELTS 7.0</span></li>
+            <li>Danish <span>Beginner, taking classes</span></li>
+            <li>German <span>A2</span></li>
+            <li>French <span>A2</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWAY -->
+  <section id="away">
+    <h2>Away from the screen</h2>
+    <div class="prose">
+      <p>
+        I read a lot, and I'm the kind of person who ends up in a bookshop in every new city.
+        I ski, play volleyball &mdash; eleven years in the same club back home &mdash; and run.
+      </p>
+      <p>
+        I travel whenever I can, and the point is always to end up somewhere I haven't been before.
+        Most of the rest of my time goes to friends and family.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Get in touch</h2>
+    <div class="contact__grid">
+      <div class="prose">
+        <p class="lead">
+          I'm looking for a part-time student assistant position in machine learning or
+          data science in the Copenhagen area, 15–20 hours a week, starting now.
+        </p>
+        <p>Happy to hear about anything adjacent — research assistance or a project.</p>
+        <div class="actions" style="margin-top:1.5rem">
+          <a class="btn" href="mailto:giulyyvilla@gmail.com">Write to me</a>
+          <a class="btn btn--ghost" href="Giulia_Villa_CV.pdf">Download CV</a>
+        </div>
+      </div>
+      <ul class="contact__list">
+        <li><a href="mailto:giulyyvilla@gmail.com">giulyyvilla@gmail.com</a></li>
+        <li><a href="tel:+4531891148">+45 31 89 11 48</a></li>
+        <li><a href="https://www.linkedin.com/in/giulia-villa2203" target="_blank" rel="noopener">linkedin.com/in/giulia-villa2203</a></li>
+        <li><a href="https://github.com/giuliavillaa" target="_blank" rel="noopener">github.com/giuliavillaa</a></li>
+        <li>Kgs. Lyngby, Denmark</li>
+      </ul>
+    </div>
+    <p class="colophon">Built by me with HTML, CSS and a little canvas. Type: Fraunces and IBM Plex.</p>
+  </section>
+
+  </div>
+</main>
+
+<script>
+/* ---- repository links -------------------------------------------
+   One place to manage every "Read the code" link.
+   Put the repository name (not the full URL) next to each project.
+   Leave "" and the link is hidden automatically — no dead links.
+   Copy the exact name from the address bar on GitHub, with Chrome
+   translation turned OFF, or the name you read will be translated.
+------------------------------------------------------------------- */
+var GITHUB_USER = 'giuliavillaa';
+var REPOS = {
+  'cold-diffusion':   'cold-diffusion-restoration',
+  'betwise':          'betwise-gambling-risk',
+  'pose-recognition': 'pose-activity-recognition',
+  'survival':         'breast-cancer-survival',
+  'planisuss':        'planisuss-simulation',
+  'churn':            'ecommerce-churn-prediction',
+  'wilson-cowan':     'wilson-cowan-dynamics'
+};
+
+(function () {
+  Array.prototype.forEach.call(document.querySelectorAll('.proj[data-repo]'), function (card) {
+    var link = card.querySelector('.proj__link');
+    if (!link) return;
+    var repo = REPOS[card.getAttribute('data-repo')];
+    if (repo) {
+      link.href = 'https://github.com/' + GITHUB_USER + '/' + repo;
+      link.target = '_blank';
+      link.rel = 'noopener';
+    } else {
+      link.remove();
+    }
+  });
+})();
+
+/* ---- diffusion portrait ---------------------------------------- */
+(function () {
+  var canvas = document.getElementById('diffusion');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* noise tiles, pre-rendered once */
+  var tiles = [];
+  for (var t = 0; t < 4; t++) {
+    var n = document.createElement('canvas');
+    n.width = 180; n.height = 225;
+    var nc = n.getContext('2d');
+    var d = nc.createImageData(n.width, n.height);
+    for (var i = 0; i < d.data.length; i += 4) {
+      var v = (Math.random() * 255) | 0;
+      d.data[i] = v; d.data[i+1] = v; d.data[i+2] = v; d.data[i+3] = 255;
+    }
+    nc.putImageData(d, 0, 0);
+    tiles.push(n);
+  }
+
+  var img = new Image();
+  var ready = false, failed = false;
+
+  function drawTarget() {
+    if (ready) {
+      /* cover-fit */
+      var r = Math.max(W / img.width, H / img.height);
+      var w = img.width * r, h = img.height * r;
+      ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+    } else {
+      var g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, '#3A2E8F');
+      g.addColorStop(1, '#EDECE7');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+  }
+
+  function frame(step, total) {
+    var p = step / total;
+    var ease = 1 - Math.pow(1 - p, 2.4);
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.filter = 'blur(' + ((1 - ease) * 26).toFixed(1) + 'px)';
+    drawTarget();
+    ctx.filter = 'none';
+
+    if (p < 1) {
+      ctx.globalAlpha = Math.pow(1 - ease, 1.4);
+      ctx.globalCompositeOperation = 'overlay';
+      var tile = tiles[step % tiles.length];
+      ctx.drawImage(tile, 0, 0, W, H);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+    }
+
+    if (step < total) {
+      requestAnimationFrame(function () { frame(step + 1, total); });
+    }
+  }
+
+  function run() {
+    if (reduced) { ctx.clearRect(0, 0, W, H); drawTarget(); return; }
+    frame(0, 54);
+  }
+
+  /* prova piu nomi finche uno carica */
+  var candidates = ['hero-photo.png', 'hero-photo.jpg', 'hero-photo.jpeg',
+                    'myself.jpg', 'myself.png', 'photo.jpg'];
+  var ci = 0;
+  img.onload = function () { ready = true; run(); };
+  img.onerror = function () {
+    ci++;
+    if (ci < candidates.length) { img.src = candidates[ci]; }
+    else { failed = true; run(); }
+  };
+  img.src = candidates[0];
+
+  document.getElementById('replay').addEventListener('click', run);
+})();
+
+/* ---- current section in the rail -------------------------------- */
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail__nav a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  if (!('IntersectionObserver' in window)) return;
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var i = sections.indexOf(e.target);
+      links.forEach(function (l) { l.classList.remove('is-current'); });
+      if (i > -1) links[i].classList.add('is-current');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+
+  sections.forEach(function (s) { if (s) obs.observe(s); });
+})();
+
+/* ---- hide project frames that have no image yet ------------------ */
+(function () {
+  Array.prototype.forEach.call(document.querySelectorAll('.proj__media img'), function (im) {
+    im.style.display = 'none';
+    im.addEventListener('load', function () {
+      im.style.display = 'block';
+      im.parentNode.classList.remove('is-empty');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
