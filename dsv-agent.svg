@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Shipping exception flow: an exception is triaged by SLA risk, customer tier, cargo value and time. Low-severity cases go into a daily digest. Medium and high cases get ranked options and two drafts, and a person approves before anything with a cost or customer contact runs.">
+  <style>
+    .box  { fill:#FFFFFF; stroke:#DBD9D3; stroke-width:1.5 }
+    .gate { fill:#E5E2F4; stroke:#3A2E8F; stroke-width:2.5 }
+    .t    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:27px; font-weight:600; fill:#1A1C20 }
+    .ta   { fill:#3A2E8F }
+    .s    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:19px; fill:#5C6169 }
+    .k    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:18px; font-weight:500; fill:#8A8F97; letter-spacing:0.5px }
+    .ka   { fill:#3A2E8F }
+    .line { stroke:#8A8F97; stroke-width:2.5; fill:none }
+    .acc  { stroke:#3A2E8F; stroke-width:3; fill:none }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8F97"/></marker>
+    <marker id="b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3A2E8F"/></marker>
+  </defs>
+
+  <rect width="800" height="500" fill="#EDECE7"/>
+
+  <!-- Row 1: exception, triage, digest -->
+  <rect class="box" x="30" y="70" width="215" height="120" rx="4"/>
+  <text class="t" x="52" y="122">Exception</text>
+  <text class="s" x="52" y="157">delay · customs</text>
+
+  <rect class="box" x="292" y="70" width="215" height="120" rx="4"/>
+  <text class="t" x="314" y="122">Triage</text>
+  <text class="s" x="314" y="152">SLA risk · tier</text>
+  <text class="s" x="314" y="176">value · time</text>
+
+  <rect class="box" x="555" y="70" width="215" height="120" rx="4"/>
+  <text class="t" x="577" y="122">Daily digest</text>
+  <text class="s" x="577" y="157">one message a day</text>
+
+  <path class="line" d="M245,130 L286,130" marker-end="url(#a)"/>
+  <path class="line" d="M507,130 L549,130" marker-end="url(#a)"/>
+  <text class="k" x="531" y="112" text-anchor="middle">low</text>
+
+  <!-- Row 2: options and drafts, approval -->
+  <path class="acc" d="M399.5,190 L399.5,284" marker-end="url(#b)"/>
+  <text class="k ka" x="414" y="244">medium · high</text>
+
+  <rect class="box" x="292" y="290" width="215" height="120" rx="4"/>
+  <text class="t" x="314" y="342">Options</text>
+  <text class="s" x="314" y="372">cost vs time</text>
+  <text class="s" x="314" y="396">plus 2 drafts</text>
+
+  <rect class="gate" x="555" y="290" width="215" height="120" rx="4"/>
+  <text class="t ta" x="577" y="342">A person</text>
+  <text class="t ta" x="577" y="376">says yes</text>
+
+  <path class="acc" d="M507,350 L549,350" marker-end="url(#b)"/>
+
+  <!-- Rule -->
+  <text class="s" x="30" y="332">Nothing with a cost,</text>
+  <text class="s" x="30" y="358">an SLA or customer</text>
+  <text class="s" x="30" y="384">contact runs before.</text>
+
+  <text class="k" x="30" y="465">scan every 20 minutes · Fleet (LangChain) · Slack</text>
+</svg>

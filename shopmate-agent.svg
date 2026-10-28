@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="ShopMate flow: stock and sales, shop-floor requests and schedules feed the agent, which proposes an order by size. The owner approves in Slack before a purchase order is written, and the owner's edits become proposed updates to the agent's skills.">
+  <style>
+    .box  { fill:#FFFFFF; stroke:#DBD9D3; stroke-width:1.5 }
+    .hl   { fill:#E5E2F4; stroke:#3A2E8F; stroke-width:2.5 }
+    .t    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:22px; font-weight:600; fill:#1A1C20 }
+    .tb   { font-size:28px }
+    .ta   { fill:#3A2E8F }
+    .s    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:17px; fill:#5C6169 }
+    .k    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:18px; font-weight:500; fill:#8A8F97; letter-spacing:0.5px }
+    .ln   { stroke:#3A2E8F; stroke-width:2.5; fill:none }
+    .dash { stroke:#8A8F97; stroke-width:2; fill:none; stroke-dasharray:6 6 }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3A2E8F"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8F97"/></marker>
+  </defs>
+
+  <rect width="800" height="500" fill="#EDECE7"/>
+
+  <!-- Inputs -->
+  <rect class="box" x="30" y="45" width="205" height="95" rx="4"/>
+  <text class="t" x="50" y="85">Stock &amp; sales</text>
+  <text class="s" x="50" y="116">4 weeks, by size</text>
+
+  <rect class="box" x="30" y="170" width="205" height="95" rx="4"/>
+  <text class="t" x="50" y="210">Shop floor</text>
+  <text class="s" x="50" y="241">customer requests</text>
+
+  <rect class="box" x="30" y="295" width="205" height="95" rx="4"/>
+  <text class="t" x="50" y="335">Schedules</text>
+  <text class="s" x="50" y="366">day · week · month</text>
+
+  <!-- Agent -->
+  <rect class="hl" x="290" y="155" width="210" height="125" rx="4"/>
+  <text class="t tb ta" x="395" y="205" text-anchor="middle">ShopMate</text>
+  <text class="s" x="395" y="237" text-anchor="middle">weeks of cover</text>
+  <text class="s" x="395" y="261" text-anchor="middle">per size, in budget</text>
+
+  <path class="ln" d="M235,92 C262,92 262,190 284,190" marker-end="url(#a)"/>
+  <path class="ln" d="M235,217 L284,217" marker-end="url(#a)"/>
+  <path class="ln" d="M235,342 C262,342 262,245 284,245" marker-end="url(#a)"/>
+
+  <!-- Outputs -->
+  <rect class="box" x="540" y="45" width="230" height="95" rx="4"/>
+  <text class="t" x="560" y="85">Proposal</text>
+  <text class="s" x="560" y="116">what to order, by size</text>
+
+  <rect class="hl" x="540" y="170" width="230" height="95" rx="4"/>
+  <text class="t ta" x="560" y="210">Owner approves</text>
+  <text class="s" x="560" y="241">Approve or Deny</text>
+
+  <rect class="box" x="540" y="295" width="230" height="95" rx="4"/>
+  <text class="t" x="560" y="335">Purchase order</text>
+  <text class="s" x="560" y="366">only after a yes</text>
+
+  <path class="ln" d="M500,190 C520,190 515,92 534,92" marker-end="url(#a)"/>
+  <path class="ln" d="M655,140 L655,164" marker-end="url(#a)"/>
+  <path class="ln" d="M655,265 L655,289" marker-end="url(#a)"/>
+
+  <!-- Learning loop -->
+  <path class="dash" d="M540,245 C505,245 505,410 470,410 L420,410 C395,410 395,340 395,286" marker-end="url(#g)"/>
+  <text class="k" x="30" y="465">the owner's edits become proposed skill updates</text>
+</svg>
