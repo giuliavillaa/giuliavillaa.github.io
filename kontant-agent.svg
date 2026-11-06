@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Kontant daily run in five steps: read the ledger and client memory, decide to remind, wait or escalate, draft the email in the client's language, validate it read-only against the ledger, and have the owner approve it in Slack before it is sent and logged. If validation fails the draft is fixed and retried up to two times. Every Friday a review proposes one change for the owner to approve.">
+  <style>
+    .box  { fill:#FFFFFF; stroke:#DBD9D3; stroke-width:1.5 }
+    .hl   { fill:#3A2E8F; stroke:#3A2E8F; stroke-width:1.5 }
+    .n    { font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:14px; font-weight:500; fill:#3A2E8F; letter-spacing:1px }
+    .nw   { fill:#CFCAF0 }
+    .t    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:22px; font-weight:600; fill:#1A1C20 }
+    .tw   { fill:#FFFFFF }
+    .s    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:17px; fill:#5C6169 }
+    .sw   { fill:#E5E2F4 }
+    .k    { font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:14px; font-weight:500; fill:#8A8F97; letter-spacing:1.5px }
+    .h    { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:26px; font-weight:600; fill:#1A1C20 }
+    .ln   { stroke:#3A2E8F; stroke-width:2.5; fill:none }
+    .dash { stroke:#8A8F97; stroke-width:2; fill:none; stroke-dasharray:6 6 }
+    .lbl  { font-family:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:17px; fill:#5C6169 }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3A2E8F"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8F97"/></marker>
+  </defs>
+
+  <rect width="800" height="500" fill="#EDECE7"/>
+
+  <!-- Header -->
+  <text class="k" x="18" y="44">KONTANT · DAILY RUN</text>
+  <text class="h" x="18" y="78">Every reminder passes two checks</text>
+
+  <!-- Legend -->
+  <rect class="box" x="560" y="56" width="16" height="16" rx="2"/>
+  <text class="lbl" x="584" y="69">agent</text>
+  <rect class="hl" x="650" y="56" width="16" height="16" rx="2"/>
+  <text class="lbl" x="674" y="69">person</text>
+
+  <!-- Step 1 -->
+  <rect class="box" x="18" y="115" width="132" height="130" rx="4"/>
+  <text class="n" x="32" y="142">01</text>
+  <text class="t" x="32" y="174">Read</text>
+  <text class="s" x="32" y="202">ledger and</text>
+  <text class="s" x="32" y="222">memory</text>
+
+  <!-- Step 2 -->
+  <rect class="box" x="176" y="115" width="132" height="130" rx="4"/>
+  <text class="n" x="190" y="142">02</text>
+  <text class="t" x="190" y="174">Decide</text>
+  <text class="s" x="190" y="202">remind, wait</text>
+  <text class="s" x="190" y="222">or escalate</text>
+
+  <!-- Step 3 -->
+  <rect class="box" x="334" y="115" width="132" height="130" rx="4"/>
+  <text class="n" x="348" y="142">03</text>
+  <text class="t" x="348" y="174">Draft</text>
+  <text class="s" x="348" y="202">in the client's</text>
+  <text class="s" x="348" y="222">language</text>
+
+  <!-- Step 4 -->
+  <rect class="box" x="492" y="115" width="132" height="130" rx="4"/>
+  <text class="n" x="506" y="142">04</text>
+  <text class="t" x="506" y="174">Validate</text>
+  <text class="s" x="506" y="202">read-only,</text>
+  <text class="s" x="506" y="222">vs the ledger</text>
+
+  <!-- Step 5 (person) -->
+  <rect class="hl" x="650" y="115" width="132" height="130" rx="4"/>
+  <text class="n nw" x="664" y="142">05</text>
+  <text class="t tw" x="664" y="174">Approve</text>
+  <text class="s sw" x="664" y="202">owner, in</text>
+  <text class="s sw" x="664" y="222">Slack</text>
+
+  <!-- Forward arrows -->
+  <path class="ln" d="M150,180 L170,180" marker-end="url(#a)"/>
+  <path class="ln" d="M308,180 L328,180" marker-end="url(#a)"/>
+  <path class="ln" d="M466,180 L486,180" marker-end="url(#a)"/>
+  <path class="ln" d="M624,180 L644,180" marker-end="url(#a)"/>
+
+  <text class="lbl" x="716" y="272" text-anchor="middle">then sent, logged</text>
+
+  <!-- Inner loop: validation fails -->
+  <path class="dash" d="M558,245 L558,310 L400,310 L400,253" marker-end="url(#g)"/>
+  <text class="lbl" x="479" y="336" text-anchor="middle">fail: fix and retry, up to 2 times</text>
+
+  <!-- Outer loop: weekly review -->
+  <path class="dash" d="M716,284 L716,410 L242,410 L242,253" marker-end="url(#g)"/>
+  <text class="lbl" x="479" y="440" text-anchor="middle">Friday review proposes one change, the owner approves</text>
+</svg>
