@@ -213,6 +213,7 @@ p{margin:0 0 1.1rem}
 .proj p:last-of-type{margin-bottom:0}
 .proj__meta{font-size:.85rem !important;color:var(--faint) !important;font-style:italic;margin-top:auto !important;padding-top:.7rem}
 .proj__meta + .proj__link{margin-top:0;padding-top:.5rem}
+.proj__link + .proj__link{margin-top:0;padding-top:.35rem}
 .proj__link{
   margin-top:auto;padding-top:.7rem;font-size:.85rem;color:var(--ink);
   align-self:flex-start;
@@ -563,6 +564,21 @@ p{margin:0 0 1.1rem}
         <p>Testing found the interface clear but the mechanics opaque: people asked how the amount is calculated, who can end a session, and why cap the charge if you can stop it anyway. Two changes followed: an estimated price before payment, and making it explicit that the card is charged at the end.</p>
         <p class="proj__meta">Team project, Group 90. My contribution: idea development and building the prototype.</p>
         <a class="proj__link" href="https://www.figma.com/proto/V2it4XmP6oUghkCQmR4ByZ/UX-Design-Prototyping?node-id=20-14" target="_blank" rel="noopener">Try the prototype</a>
+      </article>
+
+      <article class="proj">
+        <div class="proj__media is-empty" data-label="cloudbased-ecg.svg">
+          <img src="cloudbased-ecg.svg" alt="Flow: the patient records a voice note on the Apple Watch, an LLM prompt turns it into activity, symptoms and time, and the patient checks and saves it; the note is pinned to the moment on the doctor's ECG timeline, a background AI check flags findings, and the cardiologist decides">
+        </div>
+        <p class="proj__caption">The patient checks what the AI heard · the AI flags, the doctor decides</p>
+        <h3>CloudbasedECG, the heartbeat and the patient's story together</h3>
+        <p class="proj__stack">Figma · Apple Watch · LLM prompt design · user story mapping · cognitive walkthrough</p>
+        <p>Group project for UX Design and Prototyping. A cardiologist reading days of portable ECG has the tracing, but rarely knows what the patient was doing or feeling when something changed. CloudbasedECG puts both on one timeline: an Apple Watch app for the patient and a web app for the doctor.</p>
+        <p>On the watch, the patient taps Log Event, picks an activity and describes how they feel in a voice note. Speech-to-text and an LLM prompt turn it into JSON: symptoms in a fixed vocabulary (racing heart, chest pain, dizzy, and so on), the activity, the time of the event, calculated when the patient says "ten minutes ago", and a list of what is missing so it can be added on the Edit screen. The prompt never diagnoses or gives advice, and the patient sees the result on a Check &amp; Save screen before it reaches the doctor. In the web app every note is pinned to its moment on the ECG, and a background AI check flags findings such as a possible ST elevation, with its confidence, leaving the decision to the cardiologist.</p>
+        <p>A cognitive walkthrough of the watch flow by the three of us: all three parts of the task could be completed, one of them fully clear. Check &amp; Save and the "Your doctor will see this" tick were reassuring. It was unclear whether to pick the activity or record first, and the Transcript button and edit icons were too small for a wrist. On the doctor side, the way back to the patient page was easy to miss and needs to stand out.</p>
+        <p class="proj__meta">Team project, Group 90. A clickable prototype: transcription and the AI check are designed, not built; the prompt was tested on example voice notes phrased in different ways.</p>
+        <a class="proj__link" href="https://www.figma.com/proto/V2it4XmP6oUghkCQmR4ByZ/UX-Design-Prototyping?node-id=1080-884&amp;p=f&amp;viewport=1363%2C233%2C0.21&amp;t=tNw6vbFplziJ4Hy8-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=1080%3A884&amp;show-proto-sidebar=1&amp;page-id=1080%3A882" target="_blank" rel="noopener">Try the patient's watch app</a>
+        <a class="proj__link" href="https://www.figma.com/proto/V2it4XmP6oUghkCQmR4ByZ/UX-Design-Prototyping?node-id=792-878&amp;viewport=231%2C120%2C0.06&amp;t=IROwbBbG33UDX89l-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=792%3A878&amp;page-id=789%3A128" target="_blank" rel="noopener">Try the doctor's web app</a>
       </article>
 
       <article class="proj" data-repo="survival">
