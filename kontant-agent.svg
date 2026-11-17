@@ -22,7 +22,7 @@
   <rect width="800" height="500" fill="#EDECE7"/>
 
   <!-- Header -->
-  <text class="k" x="18" y="44">KONTANT · DAILY RUN</text>
+  <text class="k" x="18" y="44">KONTANT: DAILY RUN</text>
   <text class="h" x="18" y="78">Every reminder passes two checks</text>
 
   <!-- Legend -->

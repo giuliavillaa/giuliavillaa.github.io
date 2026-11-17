@@ -28,7 +28,7 @@
 
   <rect class="box" x="30" y="295" width="205" height="95" rx="4"/>
   <text class="t" x="50" y="335">Schedules</text>
-  <text class="s" x="50" y="366">day · week · month</text>
+  <text class="s" x="50" y="366">day, week, month</text>
 
   <!-- Agent -->
   <rect class="hl" x="290" y="155" width="210" height="125" rx="4"/>

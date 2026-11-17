@@ -20,12 +20,12 @@
   <!-- Row 1: exception, triage, digest -->
   <rect class="box" x="30" y="70" width="215" height="120" rx="4"/>
   <text class="t" x="52" y="122">Exception</text>
-  <text class="s" x="52" y="157">delay · customs</text>
+  <text class="s" x="52" y="157">delay, customs</text>
 
   <rect class="box" x="292" y="70" width="215" height="120" rx="4"/>
   <text class="t" x="314" y="122">Triage</text>
-  <text class="s" x="314" y="152">SLA risk · tier</text>
-  <text class="s" x="314" y="176">value · time</text>
+  <text class="s" x="314" y="152">SLA risk, tier</text>
+  <text class="s" x="314" y="176">value, time</text>
 
   <rect class="box" x="555" y="70" width="215" height="120" rx="4"/>
   <text class="t" x="577" y="122">Daily digest</text>
@@ -37,7 +37,7 @@
 
   <!-- Row 2: options and drafts, approval -->
   <path class="acc" d="M399.5,190 L399.5,284" marker-end="url(#b)"/>
-  <text class="k ka" x="414" y="244">medium · high</text>
+  <text class="k ka" x="414" y="244">medium or high</text>
 
   <rect class="box" x="292" y="290" width="215" height="120" rx="4"/>
   <text class="t" x="314" y="342">Options</text>
@@ -55,5 +55,5 @@
   <text class="s" x="30" y="358">an SLA or customer</text>
   <text class="s" x="30" y="384">contact runs before.</text>
 
-  <text class="k" x="30" y="465">scan every 20 minutes · Fleet (LangChain) · Slack</text>
+  <text class="k" x="30" y="465">scan every 20 minutes, Fleet (LangChain), Slack</text>
 </svg>

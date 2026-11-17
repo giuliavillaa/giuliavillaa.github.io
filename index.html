@@ -311,7 +311,7 @@ p{margin:0 0 1.1rem}
   <!-- HERO -->
   <section class="hero">
     <div>
-      <p class="status"><i></i>Available 15 to 20 h/week · can start immediately</p>
+      <p class="status"><i></i>Available 15 to 20 h/week, can start immediately</p>
 
       <h1>Giulia Villa</h1>
 
@@ -450,9 +450,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="kontant-agent.svg">
           <img src="kontant-agent.svg" alt="Flow: the ledger, client memory and schedules feed the agent, which decides and drafts a reminder; a read-only validator checks it against the ledger, the owner approves in Slack, then the email is sent and logged; a Friday review proposes one change at a time">
         </div>
-        <p class="proj__caption">Draft, check, approve · the validator reads the ledger before a person does</p>
+        <p class="proj__caption">Draft, check, approve: the validator reads the ledger before a person does</p>
         <h3>Kontant, an accounts-receivable teammate for creative agencies</h3>
-        <p class="proj__stack">Fleet (LangChain) · Slack · Gmail · Google Sheets · MCP · validator subagent</p>
+        <p class="proj__stack">Fleet (LangChain), Slack, Gmail, Google Sheets, MCP, validator subagent</p>
         <p>Module 3 assignment for Applied AI for Entrepreneurship. A Slack teammate that chases overdue invoices for small Danish design, branding and marketing agencies with no finance team. The owner, the account managers, the freelance bookkeeper and the agent share one channel and one Google Sheet (invoices, clients, actions, policies) as the single source of truth.</p>
         <p>Routine choices with a fixed set of options (remind, wait or escalate; friendly, firm or final tone) are designed to go to a small decision model that returns a calibrated probability: at 0.80 or above the agent prepares the action, below it a person decides. The LLM only writes emails and summaries. The limits of the Danish Interest Act (fee cap, 10 days between reminders) are hard rules, and no email leaves without approval in Slack. A read-only validator subagent checks every draft against the sheet before a person sees it, and every Friday the agent reviews outcomes and proposes one change for the owner to approve.</p>
         <p>Tested on a made-up ledger of 14 invoices: every invoice got the right action, including no contact with a client in dispute and waiting when 10 days had not passed. The weekly review found a 29% payment rate for friendly reminders against 50% for firm ones, and proposed a firm tone after 18 days instead of 21. The validator stopped a reminder to a client who had already paid and a draft with the wrong client name; once validation was a required step, 7 of 7 drafts passed in the next run.</p>
@@ -464,9 +464,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="cold-diffusion.jpg">
           <img src="cold-diffusion.jpg" alt="Original, desaturated input, classical baseline and Cold Diffusion output">
         </div>
-        <p class="proj__caption">Original · desaturated input · classical baseline · Cold Diffusion output</p>
+        <p class="proj__caption">Original, desaturated input, classical baseline, Cold Diffusion output</p>
         <h3>Cold diffusion for image restoration</h3>
-        <p class="proj__stack">PyTorch · U-Net · diffusion models</p>
+        <p class="proj__stack">PyTorch, U-Net, diffusion models</p>
         <p>Bachelor thesis. Reimplementation of the Cold Diffusion framework (Bansal et al., 2022) from the paper, testing whether deterministic degradation can be inverted without stochastic noise.</p>
         <p>Two forward operators on CelebA-HQ at 128×128: colour desaturation (T=50) and Gaussian blur (T=6, σ 0.4 to 2.0). A U-Net predicts the clean image from any degraded state, trained on an L1 objective; reconstruction uses the residual-correction update.</p>
         <p>Desaturation: PSNR 38.01, SSIM 0.986. Deblurring: PSNR 28.67, SSIM 0.894, LPIPS 0.173, FID 64.02, above both a Wiener-like filter and an OpenCV sharpening baseline on PSNR, SSIM and LPIPS. The gap between the two operators quantifies how reconstruction quality depends on operator invertibility.</p>
@@ -477,9 +477,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="shopmate-agent.svg">
           <img src="shopmate-agent.svg" alt="Flow: the ledger, shop-floor requests and schedules feed the agent, which proposes an order by size; the owner approves in the Slack thread before a purchase order is written; owner edits become proposed skill updates">
         </div>
-        <p class="proj__caption">Signals in, proposal out · nothing is written without a yes</p>
+        <p class="proj__caption">Signals in, proposal out: nothing is written without a yes</p>
         <h3>ShopMate, a shared buying agent for fashion retail</h3>
-        <p class="proj__stack">Fleet (LangChain) · Slack · Google Sheets · skills, schedules and approval rules</p>
+        <p class="proj__stack">Fleet (LangChain), Slack, Google Sheets, skills, schedules and approval rules</p>
         <p>Individual project for Applied AI for Entrepreneurship. An agent that a small shoes-and-clothing shop shares in Slack, proposing what to order by style, colour and size from stock, recent sales, the season calendar and the monthly budget. Shop staff post customer requests in a channel, and those become demand signals.</p>
         <p>Weeks of cover come from a four-week sales rate set against supplier lead time. Quantities follow the sizes that actually sell and are rounded to the supplier's size runs; out-of-season items are not reordered; a trend can move a quantity by at most 20%, and only with a source. Four schedules: a morning stock alert, a Monday buying proposal, a monthly season plan, and a Friday review that turns the owner's edits into proposed changes to the agent's own skills.</p>
         <p>Tested on demo data. The first stock alert used a single week of sales and missed a size at risk; after a correction the agent proposed its own skill update, which was approved, and the next run was right. Asked to tell a supplier about a competitor offer that did not exist, it refused. One test wrote a purchase order without approval because the tool for adding rows was set to automatic: the rule in the prompt did not hold, so approval moved to the tool itself, and the next run stopped at Approve / Deny in the Slack thread.</p>
@@ -490,9 +490,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="shap-risk.jpg">
           <img src="shap-risk.jpg" alt="SHAP beeswarm plot and fairness audit boxplots">
         </div>
-        <p class="proj__caption">SHAP beeswarm across the four risk classes · fairness audit by age and gender</p>
+        <p class="proj__caption">SHAP beeswarm across the four risk classes, and the fairness audit by age and gender</p>
         <h3>BetWise, gambling-risk classification</h3>
-        <p class="proj__stack">Python · XGBoost · SHAP · scikit-learn · imbalanced-learn</p>
+        <p class="proj__stack">Python, XGBoost, SHAP, scikit-learn, imbalanced-learn</p>
         <p>Prototype medical device software classifying self-reported online-gambling behaviour into four risk levels, following the behavioural clusters of Braverman &amp; Shaffer (2012).</p>
         <p>Model selection by nested cross-validation over 60 configurations of sampler, dimensionality reduction and classifier. Ensemble methods overfitted; the retained configuration is XGBoost without oversampling or dimensionality reduction, F1 ≈ 0.93.</p>
         <p>SHAP used for per-prediction explanation and for a fairness audit across age and gender groups. The audit identified higher feature-importance magnitude for older users and wider SHAP variance for male predictions, documented in the technical file together with the mitigations. Classified as MDR Class IIa software with GDPR-compliant data handling and human-in-the-loop review.</p>
@@ -504,9 +504,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="aut-minlaege.jpg">
           <img src="aut-minlaege.jpg" alt="Concept screens: a home urine test result in the patient's GP app, and the GP's follow-up message with a blood test booking">
         </div>
-        <p class="proj__caption">Concept screens · the result in the GP app · the GP follows up</p>
-        <h3>AUT, attachable urine test · winning team</h3>
-        <p class="proj__stack">Innovation Minisprint · DTU Skylab · Nordic Women's Health Hub · Boehringer Ingelheim</p>
+        <p class="proj__caption">Concept screens: the result in the GP app, then the GP follows up</p>
+        <h3>AUT, attachable urine test (winning team)</h3>
+        <p class="proj__stack">Innovation Minisprint, DTU Skylab, Nordic Women's Health Hub, Boehringer Ingelheim</p>
         <p>Two-day innovation sprint on one question: how might we improve identification and treatment of chronic kidney disease in women, who are treated for it half as often as men.</p>
         <p>AUT is a home test that attaches to the toilet and sends each result straight to the patient's GP through Min Læge, the platform Danish GPs already use, instead of a new app. The at-risk group is reached through e-Boks. On day two we prototyped, tested with potential users and reworked both the concept and the pitch.</p>
         <p>First of four teams. The jury pointed to the new take on home testing, the reuse of existing infrastructure, and how we planned to reach the target group. Prize: a year of NWHH membership and a feature in its newsletter.</p>
@@ -517,9 +517,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="pose-recognition.jpg">
           <img src="pose-recognition.jpg" alt="Confusion matrix and temporal structure of the dataset">
         </div>
-        <p class="proj__caption">Confusion matrix · the same data plotted in recording order</p>
+        <p class="proj__caption">Confusion matrix, and the same data plotted in recording order</p>
         <h3>Human activity recognition with neural networks</h3>
-        <p class="proj__stack">Python · TensorFlow/Keras · scikit-learn · LIME</p>
+        <p class="proj__stack">Python, TensorFlow/Keras, scikit-learn, LIME</p>
         <p>Seven-class classification of upper-body movements (left/right bicep, tricep and shoulder engagement, plus rest) from 2,700 frames of 132 pose landmarks: 33 keypoints × (x, y, z, visibility).</p>
         <p>MLP with dense and dropout layers, tuned by nested cross-validation over 48 configurations, with the scaler fitted inside each outer fold. LIME used to inspect which landmarks individual predictions rely on.</p>
         <p>Nested CV returns 100% accuracy. Inspection of the data shows each class is a single contiguous recording of roughly 386 frames, with consecutive frames ~31× closer in feature space than random pairs, so a shuffled split places near-duplicates on both sides of the train/test boundary. A temporal split gives 99.3%, still optimistic: with one session per class the dataset cannot estimate generalisation to a new subject.</p>
@@ -530,9 +530,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="dsv-agent.svg">
           <img src="dsv-agent.svg" alt="Triage flow: exception, triage, ranked options, human approval; low-severity cases batched into a daily digest">
         </div>
-        <p class="proj__caption">Exception to resolution · the approval gate sits before every cost</p>
+        <p class="proj__caption">Exception to resolution: the approval gate sits before every cost</p>
         <h3>DSV shipping exception agent</h3>
-        <p class="proj__stack">Fleet (LangChain) · MCP · Slack · agent and skill design</p>
+        <p class="proj__stack">Fleet (LangChain), MCP, Slack, agent and skill design</p>
         <p>Individual project for Applied AI for Entrepreneurship. An agent for DSV's freight-forwarding operations that resolves customer-impacting exceptions across air, ocean, road and rail before the customer has to ask.</p>
         <p>Severity is scored High, Medium or Low on four axes: risk of breaching the delivery window, customer tier, cargo value, and hours to impact. Medium and High cases get ranked resolution options with their cost and time trade-offs, plus two drafts: a plain-language customer update, and an internal note ending in an approval ask. Low-severity cases are batched into one daily digest.</p>
         <p>Nothing that commits cost, an SLA, or contact with a customer runs without a person saying yes. Written as agent instructions plus a triage skill, on a twenty-minute scan. It is a prototype: the severity thresholds are reasoned from the domain, not calibrated against real exception history.</p>
@@ -543,12 +543,13 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="churn.jpg">
           <img src="churn.jpg" alt="Feature importance ranking of the twenty strongest predictors">
         </div>
-        <p class="proj__caption">What the model keys on · the twenty strongest features</p>
-        <h3>Customer churn prediction</h3>
-        <p class="proj__stack">Python · XGBoost · pandas · seaborn · scikit-learn</p>
+        <p class="proj__caption">What the model keys on: the twenty strongest features</p>
+        <h3>Customer churn prediction and Power BI report</h3>
+        <p class="proj__stack">Python, XGBoost, pandas, seaborn, scikit-learn, Power BI</p>
         <p>Churn classification on 5,630 e-commerce customer records. Exploratory analysis of missingness patterns, univariate and bivariate distributions against the target, and a correlation matrix; six features dropped as uninformative, median and mode imputation for the rest, one-hot encoding for the remaining categoricals.</p>
         <p>XGBoost tuned by grid search over 32 configurations with 3-fold cross-validation on ROC AUC. Final model: 200 estimators, depth 5, learning rate 0.1, subsample 0.8.</p>
         <p>ROC AUC 0.991, accuracy 0.965, recall 0.853, precision 0.936 on the held-out set. Feature importance ranks tenure first, followed by whether the customer had filed a complaint, consistent with the bivariate analysis, where both separate the classes clearly.</p>
+        <p>Later the model became a two-page Power BI report. For the report, the scoring was redone so that every customer gets a churn probability from a model that never saw them (5-fold out-of-fold predictions, with imputation and encoding fitted inside each fold), which gives ROC AUC 0.986. The first page shows churn by risk band and by tenure, what drives the model, and three KPI cards: half of the customers in their first month leave, against about 5% after six months. The second page is a list a team could act on: the 72 high-risk customers who have not left yet, sorted by probability and filterable by tenure, complaint and product category. 63 of them joined less than a month ago.</p>
         <a class="proj__link" href="https://github.com/giuliavillaa/ecommerce-churn-prediction" target="_blank" rel="noopener">Read the code</a>
       </article>
 
@@ -556,9 +557,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="ev-charging.jpg">
           <img src="ev-charging.jpg" alt="Two screens of the charging station interface: the plug and pay start screen and the session in progress">
         </div>
-        <p class="proj__caption">Plug and pay, no account · the session in progress</p>
+        <p class="proj__caption">Plug and pay, no account: the session in progress</p>
         <h3>Charging an EV without the app</h3>
-        <p class="proj__stack">Figma · lean canvas · user story mapping · usability testing</p>
+        <p class="proj__stack">Figma, lean canvas, user story mapping, usability testing</p>
         <p>Group project for UX Design and Prototyping. Charging away from home means a different app and a different payment method for every operator, and no clear view of what is happening while you wait.</p>
         <p>The proposal removes the account: plug in, pay, go, with the app only if you want extras. Price per kWh is visible, you pay for what you use, you can cap the charge at a percentage, and the timer and status stay on screen. Measured as time from first interaction to charging start, and session completion rate.</p>
         <p>Testing found the interface clear but the mechanics opaque: people asked how the amount is calculated, who can end a session, and why cap the charge if you can stop it anyway. Two changes followed: an estimated price before payment, and making it explicit that the card is charged at the end.</p>
@@ -570,9 +571,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="cloudbased-ecg.jpg">
           <img src="cloudbased-ecg.jpg" alt="The doctor's web app with a 12-lead ECG and an AI notification about a possible ST elevation, next to two Apple Watch screens: recording a voice note while running, and the Check and Save summary with time, activity and symptoms">
         </div>
-        <p class="proj__caption">The doctor's ECG view with an AI notification · recording and checking a voice note on the watch</p>
+        <p class="proj__caption">The doctor's ECG view with an AI notification, and recording and checking a voice note on the watch</p>
         <h3>CloudbasedECG, the heartbeat and the patient's story together</h3>
-        <p class="proj__stack">Figma · Apple Watch · LLM prompt design · user story mapping · cognitive walkthrough</p>
+        <p class="proj__stack">Figma, Apple Watch, LLM prompt design, user story mapping, cognitive walkthrough</p>
         <p>Group project for UX Design and Prototyping. A cardiologist reading days of portable ECG has the tracing, but rarely knows what the patient was doing or feeling when something changed. CloudbasedECG puts both on one timeline: an Apple Watch app for the patient and a web app for the doctor.</p>
         <p>On the watch, the patient taps Log Event, picks an activity and describes how they feel in a voice note. Speech-to-text and an LLM prompt turn it into JSON: symptoms in a fixed vocabulary (racing heart, chest pain, dizzy, and so on), the activity, the time of the event, calculated when the patient says "ten minutes ago", and a list of what is missing so it can be added on the Edit screen. The prompt never diagnoses or gives advice, and the patient sees the result on a Check &amp; Save screen before it reaches the doctor. In the web app every note is pinned to its moment on the ECG, and a background AI check flags findings such as a possible ST elevation, with its confidence, leaving the decision to the cardiologist.</p>
         <p>A cognitive walkthrough of the watch flow by the three of us: all three parts of the task could be completed, one of them fully clear. Check &amp; Save and the "Your doctor will see this" tick were reassuring. It was unclear whether to pick the activity or record first, and the Transcript button and edit icons were too small for a wrist. On the doctor side, the way back to the patient page was easy to miss and needs to stand out.</p>
@@ -585,9 +586,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="survival-ml.jpg">
           <img src="survival-ml.jpg" alt="Model performance against a majority-class baseline, and per-class metrics">
         </div>
-        <p class="proj__caption">Model against a majority-class baseline · precision, recall and F1 per class</p>
+        <p class="proj__caption">Model against a majority-class baseline: precision, recall and F1 per class</p>
         <h3>Breast cancer survival classification</h3>
-        <p class="proj__stack">Python · scikit-learn · SVC · SMOTE · imbalanced-learn</p>
+        <p class="proj__stack">Python, scikit-learn, SVC, SMOTE, imbalanced-learn</p>
         <p>Binary survival-status classification on 4,024 SEER breast cancer records. <code>ColumnTransformer</code> with separate imputation for numerical, nominal and ordinal features; SMOTE for the 5.5:1 class imbalance; nested cross-validation over 112 configurations of dimensionality reduction, classifier and sampler.</p>
         <p>The dataset includes <em>Survival Months</em>, which is post-diagnosis outcome data rather than a predictor available when a prediction would be made. Excluding it and re-running the search gives macro F1 0.63 and, on the 123 deceased patients in the test set, precision 0.43 and recall 0.30, which is 37 of 123 deaths identified.</p>
         <p>Against a baseline that always predicts the majority class, F1 is 0.9029 versus 0.9173. The clinical variables in this dataset (stage, tumour size, node counts, receptor status, age) do not separate the classes in this formulation; the apparent performance came from the excluded feature. Reported as a negative result rather than a headline metric.</p>
@@ -598,9 +599,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="dtu-linc.jpg">
           <img src="dtu-linc.jpg" alt="Two screens of the DTU LINC prototype: boarding confirmation and arrival">
         </div>
-        <p class="proj__caption">Boarding the shuttle · arrival at the destination</p>
+        <p class="proj__caption">Boarding the shuttle, then arrival at the destination</p>
         <h3>DTU LINC, moving around campus</h3>
-        <p class="proj__stack">Figma · user story mapping · prototyping · usability testing</p>
+        <p class="proj__stack">Figma, user story mapping, prototyping, usability testing</p>
         <p>Group project for UX Design and Prototyping. A mobile prototype for DTU LINC: find a vehicle on the campus map, book it, walk to the pickup point, confirm arrival.</p>
         <p>Lean canvas, then a user story map of the whole journey, then wireframes, then a dozen linked high-fidelity screens, then a test session sorted into likes, criticism, questions and ideas.</p>
         <p class="proj__meta">Team project. My contribution: idea development and building the prototype.</p>
@@ -610,9 +611,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="planisuss.jpg">
           <img src="planisuss.jpg" alt="Population curves and herbivores plotted against vegetation density">
         </div>
-        <p class="proj__caption">336 simulated days · herbivores against vegetation density</p>
+        <p class="proj__caption">336 simulated days: herbivores against vegetation density</p>
         <h3>Planisuss, agent-based ecosystem simulation</h3>
-        <p class="proj__stack">Python · object-oriented design · NumPy · Matplotlib · Tkinter</p>
+        <p class="proj__stack">Python, object-oriented design, NumPy, Matplotlib, Tkinter</p>
         <p>Agent-based simulation of roughly 4,400 lines across 11 modules: a grid of land and water cells, regrowing vegetation, herbivores forming herds and predators forming prides. Each animal holds its own energy, lifespan, social attitude and inherited traits, and evaluates each day whether to move, feed, join a group or remain. Groups decide collectively by averaging member preferences.</p>
         <p>Built on inheritance (<code>Animal</code> → <code>Erbast</code>, <code>Carviz</code>) with full type hints, save/load, history logging, and a configuration window for world parameters.</p>
         <p>Population cycles emerge without being encoded: grazing depletes vegetation, the herbivore population falls, vegetation recovers. Running the simulation across five random seeds also shows that the predator population collapses within the first weeks under the default parameters and does not recover in any run.</p>
@@ -623,9 +624,9 @@ p{margin:0 0 1.1rem}
         <div class="proj__media is-empty" data-label="brain-modelling.jpg">
           <img src="brain-modelling.jpg" alt="Phase plane with nullclines and the corresponding time course">
         </div>
-        <p class="proj__caption">Phase plane with nullclines and trajectories · the same system over time</p>
+        <p class="proj__caption">Phase plane with nullclines and trajectories, and the same system over time</p>
         <h3>Wilson-Cowan mean-field analysis</h3>
-        <p class="proj__stack">Python · NumPy · SciPy · Matplotlib · ipywidgets</p>
+        <p class="proj__stack">Python, NumPy, SciPy, Matplotlib, ipywidgets</p>
         <p>Dynamical analysis of neural population activity using the Wilson-Cowan model: two coupled differential equations for the mean firing rate of an excitatory and an inhibitory population.</p>
         <p>Nullclines computed by inverting the activation function, fixed points located numerically, stability read from the maximum real eigenvalue of the Jacobian. Parameter sweeps over synaptic weights, external input current, the inhibitory time constant and activation thresholds, rendered as stability heatmaps. Interactive sliders redraw the phase plane as parameters change.</p>
         <p>At certain parameter values the trajectory converges to a limit cycle rather than a fixed point. The same framework is used to model seizure onset, where a small parameter shift crosses a bifurcation into a hyperexcitable regime.</p>
